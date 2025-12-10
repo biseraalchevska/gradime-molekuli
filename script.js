@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const molecules = [
         {
-            name: "Water",
+            name: "Вода",
             formula: "H2O",
             atoms: { H: 2, O: 1 },
             bonds: [
@@ -11,14 +11,27 @@ document.addEventListener("DOMContentLoaded", () => {
             ]
         },
         {
-            name: "Carbon Dioxide",
+            name: "Јаглерод диоксид",
             formula: "CO2",
             atoms: { C: 1, O: 2 },
             bonds: [
                 { a: "C", b: "O", type: 2 },
                 { a: "C", b: "O", type: 2 }
             ]
-        }
+        },
+        // {
+        //     name: "Сулфурна Киселина",
+        //     formula: "H2SO4",
+        //     atoms: { H: 2, S: 1, O: 4 },
+        //     bonds: [
+        //         { a: "H", b: "O", type: 1 },
+        //         { a: "H", b: "O", type: 1 },
+        //         { a: "S", b: "O", type: 2 },
+        //         { a: "S", b: "O", type: 2 },
+        //         { a: "S", b: "O", type: 1 },
+        //         { a: "S", b: "O", type: 1 }
+        //     ]
+        // }
     ];
 
     const workspace = document.getElementById("workspace");
@@ -36,10 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let bondFirstAtom = null;
     let currentBondType = 1;
 
-    const placedAtoms = []; // {id, type, el}
-    const placedBonds = []; // {atomAId, atomBId, atomAEl, atomBEl, type, lineEls}
+    const placedAtoms = []; 
+    const placedBonds = [];  
 
-    // --- Drag & drop atoms ---
+    // повлекување на атомот кон екранот
     document.querySelectorAll(".atom").forEach(atom => {
         atom.addEventListener("dragstart", e => {
             e.dataTransfer.setData("atomType", atom.dataset.atom);
@@ -61,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         div.style.left = (e.clientX - rect.left - 25) + "px";
         div.style.top = (e.clientY - rect.top - 25) + "px";
 
-        // Click to create bond
+        // клик за врска
         div.addEventListener("click", () => {
             if (!bondMode) return;
             handleBondClick(div.dataset.id);
@@ -71,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
         placedAtoms.push({ id: div.dataset.id, type, el: div });
     });
 
-    // --- Bond mode buttons ---
     function setBondType(type) {
         bondMode = true;
         bondFirstAtom = null;
@@ -103,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const firstObj = placedAtoms.find(a => a.id === bondFirstAtom);
         const secondObj = atomObj;
 
-        // Create bond object
         const bond = {
             atomAId: firstObj.id,
             atomBId: secondObj.id,
@@ -113,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
             lineEls: []
         };
 
-        // Draw multiple lines for visual effect
+        // врските претставени визуелно
         for (let i = 0; i < currentBondType; i++) {
             const line = document.createElement("div");
             line.classList.add("bond-line");
@@ -156,12 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Update all bonds when window resizes (optional)
     window.addEventListener("resize", () => {
         placedBonds.forEach(updateBondLine);
     });
 
-    // --- Check molecule ---
+    // проверуваме дали молекулата е точна
     checkBtn.addEventListener("click", () => {
         const counts = {};
         placedAtoms.forEach(a => counts[a.type] = (counts[a.type] || 0) + 1);
@@ -175,14 +185,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (!molMatch) {
-            resultBox.innerText = "❌ Incorrect molecule.";
+            resultBox.innerText = "Молекулата не е точна. Обидете се повторно.";
             return;
         }
 
         if (checkBondsExact(molMatch)) {
-            resultBox.innerText = `✅ Correct! You built ${molMatch.name} (${molMatch.formula})`;
+            resultBox.innerText = `Точна молекула! Ја изградивте ${molMatch.name} (${molMatch.formula})`;
         } else {
-            resultBox.innerText = "⚠️ Atom count correct, but bonds are incorrect.";
+            resultBox.innerText = "Атомите се точни, но врските помеѓу нив се погрешни. Обидете се повторно";
         }
     });
 
@@ -198,14 +208,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function checkBondsExact(mol) {
-        // Count required bonds
+        // ги броиме врските кои ни се потребни во молекулата
         const requiredCounts = {};
         mol.bonds.forEach(b => {
             const key = [b.a, b.b, b.type].sort().join("-");
             requiredCounts[key] = (requiredCounts[key] || 0) + 1;
         });
     
-        // Count placed bonds
         const placedCounts = {};
         placedBonds.forEach(b => {
             const aType = placedAtoms.find(a => a.id === b.atomAId).type;
@@ -214,7 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
             placedCounts[key] = (placedCounts[key] || 0) + 1;
         });
     
-        // Compare
         const keys = new Set([...Object.keys(requiredCounts), ...Object.keys(placedCounts)]);
         for (let key of keys) {
             if ((requiredCounts[key] || 0) !== (placedCounts[key] || 0)) return false;
@@ -226,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
     
 
-    // --- Reset ---
+    // започнуваме одново
     resetBtn.addEventListener("click", () => {
         placedAtoms.forEach(a => a.el.remove());
         placedAtoms.length = 0;
