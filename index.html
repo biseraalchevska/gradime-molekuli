@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Molecule Builder – STEM Activity</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1 class="title">Molecule Builder</h1>
+
+    <div id="container">
+
+        <div id="sidebar">
+            <!-- ========== Додаваме атоми ========== -->
+            <h2>Атоми</h2>
+            
+            <div class="atom" draggable="true" data-atom="H">H</div>
+            <div class="atom" draggable="true" data-atom="O">O</div>
+            <div class="atom" draggable="true" data-atom="C">C</div>
+
+            <h2>Tools</h2>
+            <button id="bondBtn">Draw Bond</button>
+            <button id="checkBtn">Check My Molecule</button>
+            <button id="resetBtn">Reset</button>
+
+
+            <p class="note">
+                Повлечете ги атомите во workspace.  
+                Click "Draw Bond" → click two atoms to bond them.  
+                Then press “Check My Molecule.”
+            </p>
+        </div>
+
+        
+        <div id="workspace">
+            <p class="workspace-hint">Drop atoms here</p>
+        </div>
+    </div>
+
+    <!-- Results (optional) -->
+    <div id="result"></div>
+
+    <!-- Link JS -->
+    <script src="script.js"></script>
+</body>
+</html>
