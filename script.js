@@ -19,6 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 { a: "C", b: "O", type: 2 }
             ]
         },
+        {
+            name: "sulfur dioksid",
+            formula: "SO2",
+            atoms: { S:1,O:2 },
+            bonds: [
+                { a: "O", b: "S", type: 1 },
+                { a: "O", b: "S", type: 1 }
+            ]
+        }
         
     ];
 
