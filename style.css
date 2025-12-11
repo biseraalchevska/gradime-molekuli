@@ -109,6 +109,7 @@ button:hover {
     user-select: none;
     transition: 0.2s ease;
     border: 2px solid #000;
+    z-index: 2;
 }
 
 .placed-atom:hover {
@@ -125,6 +126,7 @@ button:hover {
     height: 3px;
     background: #333;
     transform-origin: left center;
+    z-index: 1;
 }
 
 

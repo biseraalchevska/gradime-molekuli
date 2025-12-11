@@ -64,6 +64,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // }
     ];
 
+    const atomColors = {
+        H: "white",
+        C: "black",
+        O: "red",
+        // N: "blue",
+        //S: "yellow",
+        // P: "orange",
+        // Cl: "green",
+        // F: "green",
+        // Br: "brown",
+        // I: "purple"
+    };
+
     const workspace = document.getElementById("workspace");
     const checkBtn = document.getElementById("checkBtn");
     const resetBtn = document.getElementById("resetBtn");
@@ -103,6 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
         div.dataset.id = String(atomCounter++);
         div.style.left = (e.clientX - rect.left - 25) + "px";
         div.style.top = (e.clientY - rect.top - 25) + "px";
+        div.style.backgroundColor = atomColors[type] || "gray";
+
+        if (type === "H") div.style.color = "black";
+        else if (type === "C") div.style.color = "white";
+        //else div.style.color = "white"; 
+
 
         // клик за врска
         div.addEventListener("click", () => {
