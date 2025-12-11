@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const molecules = [
         {
-            name: "Вода",
+            name: "вода",
             formula: "H2O",
             atoms: { H: 2, O: 1 },
             bonds: [
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ]
         },
         {
-            name: "Јаглерод диоксид",
+            name: "jаглерод диоксид",
             formula: "CO2",
             atoms: { C: 1, O: 2 },
             bonds: [
@@ -19,69 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 { a: "C", b: "O", type: 2 }
             ]
         },
-        // {
-        //     name: "glukoza",
-        //     formula: "C6H12O6",
-        //     atoms: { C: 6, H: 12, O: 6 },
-        //     bonds: [
-        //         { a: "H", b: "C", type: 1 },
-        //         { a: "H", b: "C", type: 1 },
-        //         { a: "H", b: "C", type: 1 },
-        //         { a: "H", b: "C", type: 1 },
-        //         { a: "H", b: "C", type: 1 },
-        //         { a: "H", b: "C", type: 1 },
-        //         { a: "H", b: "C", type: 1 },
-        //         { a: "O", b: "H", type: 1 },
-        //         { a: "O", b: "H", type: 1 },
-        //         { a: "O", b: "H", type: 1 },
-        //         { a: "O", b: "H", type: 1 },
-        //         { a: "O", b: "H", type: 1 },
-        //         { a: "C", b: "O", type: 1 },
-        //         { a: "C", b: "O", type: 1 },
-        //         { a: "C", b: "O", type: 1 },
-        //         { a: "C", b: "O", type: 1 },
-        //         { a: "C", b: "O", type: 1 },
-        //         { a: "C", b: "C", type: 1 },
-        //         { a: "C", b: "C", type: 1 },
-        //         { a: "C", b: "C", type: 1 },
-        //         { a: "C", b: "C", type: 1 },
-        //         { a: "C", b: "C", type: 1 },
-        //         { a: "C", b: "O", type: 2 },
-        //     ]
-        // }
-        // {
-        //     name: "Сулфурна Киселина",
-        //     formula: "H2SO4",
-        //     atoms: { H: 2, S: 1, O: 4 },
-        //     bonds: [
-        //         { a: "H", b: "O", type: 1 },
-        //         { a: "H", b: "O", type: 1 },
-        //         { a: "S", b: "O", type: 2 },
-        //         { a: "S", b: "O", type: 2 },
-        //         { a: "S", b: "O", type: 1 },
-        //         { a: "S", b: "O", type: 1 }
-        //     ]
-        // }
+        
     ];
 
     const atomColors = {
         H: "white",
         C: "black",
         O: "red",
-        // N: "blue",
-        //S: "yellow",
-        // P: "orange",
-        // Cl: "green",
-        // F: "green",
-        // Br: "brown",
-        // I: "purple"
     };
 
     const workspace = document.getElementById("workspace");
     const checkBtn = document.getElementById("checkBtn");
     const resetBtn = document.getElementById("resetBtn");
 
-    const resultBox = document.getElementById("result");
+    const resultModal = document.getElementById("resultModal");
+    const resultText = document.getElementById("resultText");
+    const tryAgainBtn = document.getElementById("tryAgainBtn");
+    
 
     const singleBondBtn = document.getElementById("singleBondBtn");
     const doubleBondBtn = document.getElementById("doubleBondBtn");
@@ -132,7 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
         workspace.appendChild(div);
         placedAtoms.push({ id: div.dataset.id, type, el: div });
     });
-
+    
+    
     function setBondType(type) {
         bondMode = true;
         bondFirstAtom = null;
@@ -234,15 +189,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (!molMatch) {
-            resultBox.innerText = "Молекулата не е точна. Обидете се повторно.";
-            return;
-        }
-
-        if (checkBondsExact(molMatch)) {
-            resultBox.innerText = `Точна молекула! Ја изградивте ${molMatch.name} (${molMatch.formula})`;
+            resultText.innerText = "Молекулата не е точна. Обидете се повторно.";
+        } else if (checkBondsExact(molMatch)) {
+            resultText.innerText = `Точна молекула! Ја изградивте ${molMatch.name} (${molMatch.formula})`;
         } else {
-            resultBox.innerText = "Атомите се точни, но врските помеѓу нив се погрешни. Обидете се повторно";
+            resultText.innerText = "Атомите се точни, но врските помеѓу нив се погрешни. Обидете се повторно.";
         }
+    
+        resultModal.style.display = "flex"; 
+    });
+
+    tryAgainBtn.addEventListener("click", () => {
+        resetBtn.click(); 
+        resultModal.style.display = "none"; 
     });
 
     function sameAtomCounts(placed, required) {

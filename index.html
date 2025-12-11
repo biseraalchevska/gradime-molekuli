@@ -15,6 +15,7 @@
 
         <div id="sidebar">
             <!--тука додаваме атоми-->
+            <div class="atoms-container">
             <h2>Атоми</h2>
             
             <div class="atom" draggable="true" data-atom="H">H</div>
@@ -23,8 +24,10 @@
 
 
 
+
+
             <h2>Поврзи ги атомите</h2>
-            <button id="singleBondBtn">Нацртај еднечна врска</button>
+            <button id="singleBondBtn">Нацртај единечна врска</button>
             <button id="doubleBondBtn">Нацртај двојна врска</button>
             <button id="tripleBondBtn">Нацртај тројна врска</button>
 
@@ -32,12 +35,8 @@
             <button id="resetBtn">Почни од почеток</button>
 
 
-            <p class="note">
-                Повлечете ги атомите на десната страна на екранот.  
-                Нацртајте ја хемиската врска која соодветува на вашата молекула → кликнете на два атома за да ги поврзете со врска.  
-                На крај, проверете дали сте ја нацртале точната молекула.
-            </p>
         </div>
+    </div>
 
         
         <div id="workspace">
@@ -45,7 +44,12 @@
         </div>
     </div>
 
-    <div id="result"></div>
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+          <p id="resultText"></p>
+          <button id="tryAgainBtn">Пробај повторно</button>
+        </div>
+      </div>
 
     <script src="script.js"></script>
 </body>
