@@ -27,6 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 { a: "O", b: "S", type: 1 },
                 { a: "O", b: "S", type: 1 }
             ]
+        },
+        {
+            name: "AMONIJAK",
+            formula: "NH3",
+            atoms: { N:1 ,H : 3 },
+            bonds: [
+                { a: "H", b: "N", type: 1 },
+                { a: "H", b: "N", type: 1 },
+                { a: "H", b: "N", type: 1 }
+
+                
+            ]
         }
         
     ];
