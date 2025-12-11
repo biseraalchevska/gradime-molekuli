@@ -204,14 +204,15 @@ document.addEventListener("DOMContentLoaded", () => {
         return true;
     }
 
-    function bondKey(a, b) { return [a, b].sort().join("-"); }
-
+    function bondKey(a, b, type) {
+        const sorted = [a, b].sort();
+        return `${type}:${sorted[0]}:${sorted[1]}`;
+    }
 
     function checkBondsExact(mol) {
-        // ги броиме врските кои ни се потребни во молекулата
         const requiredCounts = {};
         mol.bonds.forEach(b => {
-            const key = [b.a, b.b, b.type].sort().join("-");
+            const key = bondKey(b.a, b.b, b.type);
             requiredCounts[key] = (requiredCounts[key] || 0) + 1;
         });
     
@@ -219,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
         placedBonds.forEach(b => {
             const aType = placedAtoms.find(a => a.id === b.atomAId).type;
             const bType = placedAtoms.find(a => a.id === b.atomBId).type;
-            const key = [aType, bType, b.type].sort().join("-");
+            const key = bondKey(aType, bType, b.type);
             placedCounts[key] = (placedCounts[key] || 0) + 1;
         });
     
@@ -231,7 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return true;
     }
     
-        
     
 
     // започнуваме одново
