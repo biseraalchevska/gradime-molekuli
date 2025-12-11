@@ -20,6 +20,36 @@ document.addEventListener("DOMContentLoaded", () => {
             ]
         },
         // {
+        //     name: "glukoza",
+        //     formula: "C6H12O6",
+        //     atoms: { C: 6, H: 12, O: 6 },
+        //     bonds: [
+        //         { a: "H", b: "C", type: 1 },
+        //         { a: "H", b: "C", type: 1 },
+        //         { a: "H", b: "C", type: 1 },
+        //         { a: "H", b: "C", type: 1 },
+        //         { a: "H", b: "C", type: 1 },
+        //         { a: "H", b: "C", type: 1 },
+        //         { a: "H", b: "C", type: 1 },
+        //         { a: "O", b: "H", type: 1 },
+        //         { a: "O", b: "H", type: 1 },
+        //         { a: "O", b: "H", type: 1 },
+        //         { a: "O", b: "H", type: 1 },
+        //         { a: "O", b: "H", type: 1 },
+        //         { a: "C", b: "O", type: 1 },
+        //         { a: "C", b: "O", type: 1 },
+        //         { a: "C", b: "O", type: 1 },
+        //         { a: "C", b: "O", type: 1 },
+        //         { a: "C", b: "O", type: 1 },
+        //         { a: "C", b: "C", type: 1 },
+        //         { a: "C", b: "C", type: 1 },
+        //         { a: "C", b: "C", type: 1 },
+        //         { a: "C", b: "C", type: 1 },
+        //         { a: "C", b: "C", type: 1 },
+        //         { a: "C", b: "O", type: 2 },
+        //     ]
+        // }
+        // {
         //     name: "Сулфурна Киселина",
         //     formula: "H2SO4",
         //     atoms: { H: 2, S: 1, O: 4 },
