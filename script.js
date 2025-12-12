@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ]
         },
         {
-            name: "sulfur dioksid",
+            name: "сулфур диоксид",
             formula: "SO2",
             atoms: { S:1,O:2 },
             bonds: [
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ]
         },
         {
-            name: "AMONIJAK",
+            name: "амонијак",
             formula: "NH3",
             atoms: { N:1 ,H : 3 },
             bonds: [
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { a: "H", b: "N", type: 1 },
                 { a: "H", b: "N", type: 1 }
 
-                
+
             ]
         }
         
@@ -47,6 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
         H: "white",
         C: "black",
         O: "red",
+        S: "yellow",
+        N: "blue"
     };
 
     const workspace = document.getElementById("workspace");
